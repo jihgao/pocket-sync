@@ -87,6 +87,7 @@ function getItems(){
           [].push.apply(cachedItems, items);
           config.last_page++
           saveOptions();
+          spinner.text = 'synced ' + (cachedItems.length - cachedCount);
           getItems(config.last_page);
       }else{
           if( result.since ){
