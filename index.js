@@ -7,13 +7,13 @@ const log = console.log;
 let cachedItems;
 let config;
 let optionError = false;
-
 if(!fs.existsSync('./db.json') ){
   cachedItems = [];
 }else{
   cachedItems = require('./db.json');
 }
 
+let cachedCount = cachedItems.length;
 if(!fs.existsSync('./config.json') ){
   config = {
     page_size: 120,
@@ -87,7 +87,6 @@ function getItems(){
           [].push.apply(cachedItems, items);
           config.last_page++
           saveOptions();
-          spinner.text = 'synced ' + cachedItems.length;
           getItems(config.last_page);
       }else{
           if( result.since ){
