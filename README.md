@@ -8,7 +8,7 @@ A command-line tool for synchronizing your pocket items to your local database
 
 ## Usage
 
-`pocketsync -k <consumer key> -t <access_token>`
+`pocketsync -k <consumer key> -t <access token>`
 
 
 ## Options
