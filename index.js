@@ -5,23 +5,26 @@ const fs = require('fs');
 const ora = require('ora');
 const program = require('commander');
 const log = console.log;
+const path = require('path');
+const configFile = path.join(_dirname, 'config.json');
+const dbFile = path.join(_dirname, 'db.json');
 let cachedItems;
 let config;
 let optionError = false;
-if(!fs.existsSync('./db.json') ){
+if(!fs.existsSync(dbFile) ){
   cachedItems = [];
 }else{
-  cachedItems = require('./db.json');
+  cachedItems = require(dbFile);
 }
 
 let cachedCount = cachedItems.length;
-if(!fs.existsSync('./config.json') ){
+if(!fs.existsSync(configFile) ){
   config = {
     page_size: 120,
     last_page: 1
   };
 }else{
-  config = require('./config.json');
+  config = require(configFile);
 }
 
 if( !config.consumer_key || !config.access_token){
@@ -48,7 +51,7 @@ if( !config.consumer_key || !config.access_token){
    if( optionError ){
       process.exit(1);
    }else{
-      fs.writeFileSync('config.json', JSON.stringify(config, null, 4));
+      fs.writeFileSync(configFile, JSON.stringify(config, null, 4));
    }
 }
 
@@ -104,7 +107,6 @@ function getItems(){
 }
 
 function saveOptions(){
-  fs.writeFileSync('db.json', JSON.stringify(cachedItems, null, 4));
-  fs.writeFileSync('config.json', JSON.stringify(config, null, 4));
+  fs.writeFileSync(dbFile, JSON.stringify(cachedItems, null, 4));
+  fs.writeFileSync(configFile, JSON.stringify(config, null, 4));
 }
-
