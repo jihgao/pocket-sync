@@ -6,11 +6,18 @@ const ora = require('ora');
 const program = require('commander');
 const log = console.log;
 const path = require('path');
-const configFile = path.join(_dirname, 'config.json');
-const dbFile = path.join(_dirname, 'db.json');
+const os = require('os');
+const baseDirectory = path.join(os.homedir(), '.pocketsync');
+const configFile = path.join(baseDirectory, 'config.json');
+const dbFile = path.join(baseDirectory, 'db.json');
+
 let cachedItems;
 let config;
 let optionError = false;
+
+if( !fs.existsSync(baseDirectory) || !fs.statSync(baseDirectory).isDirectory() ){
+  fs.mkdirSync(baseDirectory);
+}
 if(!fs.existsSync(dbFile) ){
   cachedItems = [];
 }else{
@@ -32,6 +39,7 @@ if( !config.consumer_key || !config.access_token){
    .version('0.0.1')
    .option('-k, --key <consumer_key>', 'The consumer key of your pocket app')
    .option('-t, --token <access_token>', 'The access token of your pocket app')
+   .option('-o, --output <output_path>', 'The output file you want save the data')
    .parse(process.argv);
 
    if( program.key ){
@@ -100,6 +108,9 @@ function getItems(){
           config.last_page = 1;
           saveOptions();
           spinner.stop();
+          if( program.output ){
+            fs.writeFileSync(path.join(__dirname, program.output), JSON.stringify(cachedItems, null, 4));
+          }
           log("done! ");
       }
     }
