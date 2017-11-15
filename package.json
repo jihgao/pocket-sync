@@ -5,7 +5,6 @@
   "author": "jihgao",
   "description": "A command-line tool for synchronizing your pocket items to your local database",
   "homepage": "https://github.com/jihgao/pocket-sync#readme",
-  "private": true,
   "keywords": [
     "pocket",
     "synchronization"
