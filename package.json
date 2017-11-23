@@ -1,6 +1,6 @@
 {
   "name": "pocket-sync",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "license": "MIT",
   "author": "jihgao",
   "description": "A command-line tool for synchronizing your pocket items to your local database",
