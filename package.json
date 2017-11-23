@@ -10,15 +10,15 @@
     "synchronization"
   ],
   "bin": {
-    "pocketsync": "./index.js"
+    "pocketsync": "./pocketsync.js"
   },
   "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/jihgao/pocket-sync.git"
   },
-  "bugs": { 
-    "url": "https://github.com/jihgao/pocket-sync/issues" 
+  "bugs": {
+    "url": "https://github.com/jihgao/pocket-sync/issues"
   },
   "dependencies": {
     "commander": "^2.11.0",

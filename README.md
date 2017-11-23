@@ -8,7 +8,13 @@ A command-line tool for synchronizing your pocket items to your local database
 
 ## Usage
 
-`pocketsync -k <consumer key> -t <access token> -o <output file>`
+- Synchronize: `pocketsync sync -k <consumer key> -t <access token>`
+
+- Reset data, consumer and access access token:  `pocketsync reset`
+
+- Export the cached data to other file: `pocketsync export > <your_json_file_path.json>`
+
+- Archive the cached data: `pocketsync archive`
 
 
 ## Options

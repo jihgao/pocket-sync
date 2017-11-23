@@ -14,7 +14,6 @@ const dbFile = path.join(baseDirectory, 'db.json');
 let cachedItems;
 let config;
 let optionError = false;
-
 if( !fs.existsSync(baseDirectory) || !fs.statSync(baseDirectory).isDirectory() ){
   fs.mkdirSync(baseDirectory);
 }
@@ -36,7 +35,6 @@ if(!fs.existsSync(configFile) ){
 
 if( !config.consumer_key || !config.access_token){
     program
-   .version('0.0.1')
    .option('-k, --key <consumer_key>', 'The consumer key of your pocket app')
    .option('-t, --token <access_token>', 'The access token of your pocket app')
    .option('-o, --output <output_path>', 'The output file you want save the data')
@@ -75,7 +73,7 @@ function getItems(){
       "consumer_key": config.consumer_key,
       "access_token": config.access_token,
       "state":"all",
-      "detailType":"simple",
+      "detailType":"complete",
       "count": config.page_size,
       "sort":"oldest",
       "offset": offset,
